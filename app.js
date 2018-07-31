@@ -16,17 +16,28 @@ if (command === 'add') {
     const note = notes.addNote(argv.title, argv.body);
     if (note) {
         console.log(`Note created!`);
-        console.log('------');
-        console.log(`Title: ${note.title}, Body: ${note.body}`);
+        notes.logNote(note);
     } else {
         console.log(`Note title already in use`);
     }  
+
 } else if (command === 'list') {
     notes.getAll();
+
 } else if  (command === 'read') {
-    notes.getNote(argv.title);
+    const note = notes.getNote(argv.title);
+    if (note) {
+        console.log('Note read!');
+        notes.logNote(note); // Can only call this function by specifying it comes from 'notes' file
+    } else {
+        console.log('Note not found');
+    };
+
 } else if (command === 'remove') {
-    notes.removeNote(argv.title);
+    const noteRemoved = notes.removeNote(argv.title);
+    const message = noteRemoved ? 'Note was removed.' : 'Note not found.';
+    console.log(message);
+
 } else {
     console.log('Command not recognized');
 };

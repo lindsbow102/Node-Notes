@@ -38,17 +38,31 @@ const getAll = () => {
 };
 
 const getNote = (title) => {
-    console.log(`Getting note: ${title}`);
+    const notes = fetchNotes();
+    const filteredNotes = notes.filter((note) => note.title === title);
+    return filteredNotes[0]; // We want to return first item in filteredNotes array
 };
 
 const removeNote = (title) => {
-    console.log(`Removing note: ${title}`);
+    let notes = fetchNotes();
+    const filteredNotes = notes.filter((note) => note.title !== title); // if true, item will be kept in array
+    console.log(filteredNotes);
+    saveNotes(filteredNotes); // Save new notes array
+
+    return notes.length !== filteredNotes.length; // Checking that note was actually removed
+};
+
+const logNote = (note) => {
+    console.log('-------');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
 };
 
 module.exports = {
     addNote,
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 };
 
