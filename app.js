@@ -4,7 +4,31 @@ const yargs = require('yargs');
 
 const notes = require('./notes');
 
-const argv = yargs.argv;
+const titleOptions = {
+    describe: 'Title of note',
+    demand: true, // This means user MUST provide title when using add command
+    alias: 't' // Allows shortcut command in terminal
+};
+const bodyOptions = {
+    describe: 'Body text',
+    demand: true,
+    alias: 'b'
+};
+
+const argv = yargs
+    .command('add', 'Add a new note', {
+        title: titleOptions,
+        body: bodyOptions
+    })
+    .command('list', 'List all notes')
+    .command('read', 'Read a note', {
+        title: titleOptions
+    })
+    .command('remove', 'Remove a note', {
+        title: titleOptions
+    })
+    .help()
+    .argv;
 const command = argv._[0];
 console.log(`Command: ${command}`);
 //console.log('Process:', process.argv);
