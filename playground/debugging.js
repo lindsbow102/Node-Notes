@@ -9,7 +9,7 @@ debugger;
 person.name = 'Alyssa';
 
 console.log(person);
-// node inspect playground/debugging.js
+// "node inspect playground/debugging.js"
 // debug> list(10)  --indicates number of lines I want to view
 // debug> n --for next statement, will take us from wrapper function into our actual code
 // debug> c -- for continue, will run the rest of the code until program completes
@@ -18,3 +18,9 @@ console.log(person);
 
 //Challenge: 
 // node inspect notes.js read --title=hiya
+
+// Debugging with chrome dev tools
+// "node --inspect-brk playground/debugging.js"
+// Head to chrome and put "chrome://inspect" in browser
+// open console in bottom of sources tab using "ESC" key
+// Blue arrow button achieves same thing "c" command does
